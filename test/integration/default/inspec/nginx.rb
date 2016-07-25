@@ -1,3 +1,4 @@
+
 describe package('nginx') do
   it { should be_installed }
 end
@@ -24,4 +25,8 @@ web_user = 'nginx' if os[:family] == 'centos'
 
 describe user(web_user) do
   it { should exist }
+end
+
+describe command 'curl localhost' do
+  its('stdout') { should match /Automation for the People/ }
 end
